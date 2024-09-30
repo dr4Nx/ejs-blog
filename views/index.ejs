@@ -1,17 +1,30 @@
 <%- include('partials/header') %>
 
-<h1>Home</h1>
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold text-body-emphasis">Start Blogging Now!</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Quickly write something cool.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="/create" class="btn btn-primary btn-lg px-4 gap-3">Create Post</a>
+    </div>
+  </div>
+</div>
+<div class="container">
 <% if (locals.posts && posts.length) { %>
-  <ul>
     <% posts.forEach(function(post) { %>
-      <li>
-        <h2><a href="<%= post.url %>"><%= post.title %></a></h2>
-        <p><%= post.content.substring(0, 100) %>...</p>
-      </li>
+      <div class="card my-5">
+        <h5 class="card-header"><%= post.title %></h5>
+        <div class="card-body">
+            <p class="card-text">
+            <%= post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %>
+            </p>
+          <a href="<%= post.url %>" class="btn btn-primary">Visit Post</a>
+        </div>
+      </div>
     <% }); %>
-  </ul>
 <% } else { %>
-  <p>No posts available.</p>
+  <p>No posts available. <a href="/create">Make one now!</a></p>
 <% } %>
+</div>
 
 <%- include('partials/footer') %>
