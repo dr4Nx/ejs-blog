@@ -1,12 +1,17 @@
 <%- include('partials/header') %>
 
-<header>
-  <li>
-    <a href="/">Home</a>
-    <a href="/create">Create</a>
-  </li>
-</header>
-
-<h1>Hello, World!</h1>
+<h1>Home</h1>
+<% if (locals.posts && posts.length) { %>
+  <ul>
+    <% posts.forEach(function(post) { %>
+      <li>
+        <h2><a href="<%= post.url %>"><%= post.title %></a></h2>
+        <p><%= post.content.substring(0, 100) %>...</p>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>No posts available.</p>
+<% } %>
 
 <%- include('partials/footer') %>

@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<% if (locals.post) { %>
+  <div>
+    <h1><%= post.title %></h1>
+    <p><%= post.content %></p>
+  </div>
+<% } else { %>
+  <div>
+    <h1>No Post Found</h1>
+  </div>
+<% } %>
+
+<% if (locals.post) { %>
+  <form action="/delete" method="POST" style="display: inline;">
+    <input type="hidden" name="title" value="<%= post.title %>">
+    <button type="submit">Delete Post</button>
+  </form>
+  <form action="/edit" method="POST" style="display: inline;">
+    <input type="hidden" name="title" value="<%= post.title %>">
+    <button type="submit">Edit Post</button>
+  </form>
+<% } %>
+
+<%- include('partials/footer') %>

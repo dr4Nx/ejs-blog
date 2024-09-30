@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<% if (locals.post) { %>
+  <h1><%= post.title %></h1>
+
+  <form action="/resubmit" method="POST">
+    <div>
+      <label for="content">New Body:</label>
+      <input type="hidden" name="title" value="<%= post.title %>">
+      <textarea id="content" name="content" rows="10" cols="30"><%= post.content %></textarea>
+    </div>
+    <button type="submit">Update Post</button>
+  </form>
+<% } else { %>
+  <p>Post not found.</p>
+<% } %>
+
+<%- include('partials/footer') %>
